@@ -103,10 +103,11 @@ def get_prev_moves(current_state: str, prev_state: dict) -> list:
 
     return sequence_list
 
-def a_star_fifteens(initial_state: str) -> list:
+def a_star_fifteens(initial_state: str) -> Tuple:
     """
-    Takes string representing array of fifteens knight problem and returns a list of 
-    string turns that solves the problem.
+    Takes string representing array of fifteens knight problem and returns a 
+    tuple, where the first index is the number of turns it took total and the second object is a list 
+    of string turns that solves the problem.
 
     Example of input: "10,11,3,13\n5,4,1,2\n9,8,6,12\n0,14,15,7"
     """
@@ -120,7 +121,7 @@ def a_star_fifteens(initial_state: str) -> list:
     while frontier: # while heap is not empty (if empty, you've gone through all the possible states)
         current_state = heapq.heappop(frontier)[1]
         if current_state == final_state:
-            return get_prev_moves(current_state, prev_state)
+            return g[current_state], get_prev_moves(current_state, prev_state)
         possible_states = get_possible_states(current_state)
 
         for possible_state in possible_states:
@@ -133,8 +134,22 @@ def a_star_fifteens(initial_state: str) -> list:
                 f = h_fifteen(possible_state) + g[possible_state] + 1
                 heapq.heappush(frontier, (f, possible_state))
 
-sequence_list = a_star_fifteens("10,11,3,13\n5,4,1,2\n9,8,6,12\n0,14,15,7")
+print("***test case 1: ***")
 
-for sequence in sequence_list:
+num_turns, sequence = a_star_fifteens("10,11,3,13\n5,4,1,2\n9,8,6,12\n0,14,15,7")
+
+print('it took', num_turns, 'turns')
+
+for turn in sequence:
     print(f'---------')
-    print(sequence)
+    print(turn)
+
+print("***test case 2: ***")
+
+num_turns, sequence = a_star_fifteens("9, 11, 12, 13\n0, 8, 14, 10\n15, 1, 5, 4\n6, 3, 2, 7")
+
+print('it took', num_turns, 'turns')
+
+for turn in sequence:
+    print(f'---------')
+    print(turn)
