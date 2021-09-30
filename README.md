@@ -1,7 +1,7 @@
 INTRODUCTION
 ------------
 
-* `Author`: Albert Sun (NetID: as1003)
+* `Author`: Albert Sun 
 * `Date`: Sept 21, 2021
 * `Course`: CS 570 (Artificial Intelligence) taught at Duke University by Professor Vincent Conitzer in Fall 2021.
 * `Assignment`: [HW 1](https://courses.cs.duke.edu/fall21/compsci570/homework1.pdf).
